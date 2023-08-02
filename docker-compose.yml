@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: squid
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "${DB_PORT}:5432"
+      # command: ["postgres", "-c", "log_statement=all"]
+    shm_size: 1gb

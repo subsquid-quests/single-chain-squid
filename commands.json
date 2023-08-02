@@ -1,0 +1,84 @@
+{
+    "$schema": "https://cdn.subsquid.io/schemas/commands.json",
+    "commands": {
+      "clean": {
+        "description": "delete all build artifacts",
+        "cmd": ["npx", "--yes", "rimraf", "lib"]
+      },
+      "build": {
+        "description": "Build the squid project",
+        "deps": ["clean"],
+        "cmd": ["tsc"]
+      },
+      "up": {
+        "description": "Start a PG database",
+        "cmd": ["docker-compose", "up", "-d"]
+      },
+      "down": {
+        "description": "Drop a PG database",
+        "cmd": ["docker-compose", "down"]
+      },
+      "migration:apply": {
+        "description": "Apply the DB migrations",
+        "cmd": ["squid-typeorm-migration", "apply"]
+      },
+      "migration:generate": {
+        "description": "Generate a DB migration matching the TypeORM entities",
+        "deps": ["build", "migration:clean"],
+        "cmd": ["squid-typeorm-migration", "generate"],
+      },
+      "migration:clean": {
+        "description": "Clean the migrations folder",
+        "cmd": ["npx", "--yes", "rimraf", "./db/migrations"],
+      },
+      "migration": {
+        "deps": ["build"],
+        "cmd": ["squid-typeorm-migration", "generate"],
+        "hidden": true
+      },
+      "codegen": {
+        "description": "Generate TypeORM entities from the schema file",
+        "cmd": ["squid-typeorm-codegen"]
+      },
+      "typegen": {
+        "description": "Generate data access classes for an ABI file(s) in the ./abi folder",
+        "cmd": ["squid-evm-typegen", "./src/abi", {"glob": "./abi/*.json"}, "--multicall"]
+      },
+      "process": {
+        "description": "Load .env and start the squid processor",
+        "deps": ["build", "migration:apply"],
+        "cmd": ["node", "--require=dotenv/config", "lib/main.js"]
+      },
+      "process:prod": {
+        "description": "Start the squid processor",
+        "deps": ["migration:apply"],
+        "cmd": ["node", "lib/main.js"],
+        "hidden": true
+      },
+      "serve": {
+        "description": "Start the GraphQL API server",
+        "cmd": ["squid-graphql-server"]
+      },
+      "serve:prod": {
+        "description": "Start the GraphQL API server with caching and limits",
+        "cmd": ["squid-graphql-server",
+          "--dumb-cache", "in-memory",
+          "--dumb-cache-ttl", "1000",
+          "--dumb-cache-size", "100",
+          "--dumb-cache-max-age", "1000" ]
+      },
+      "check-updates": {
+        "cmd": ["npx", "--yes", "npm-check-updates", "--filter=/subsquid/", "--upgrade"],
+        "hidden": true
+      },
+      "bump": {
+        "description": "Bump @subsquid packages to the latest versions",
+        "deps": ["check-updates"],
+        "cmd": ["npm", "i", "-f"]
+      },
+      "open": {
+        "description": "Open a local browser window",
+        "cmd": ["npx", "--yes", "opener"]
+      }
+    }
+  }
