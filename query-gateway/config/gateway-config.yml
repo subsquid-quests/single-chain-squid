@@ -1,0 +1,4 @@
+scheduler_id: "12D3KooWQER7HEpwsvqSzqzaiV36d3Bn6DZrnwEunnzS76pgZkMU"
+send_metrics: true
+available_datasets:
+  ethereum-mainnet: "czM6Ly9ldGhlcmV1bS1tYWlubmV0"

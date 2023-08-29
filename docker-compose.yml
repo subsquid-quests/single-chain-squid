@@ -8,5 +8,20 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "${DB_PORT}:5432"
-      # command: ["postgres", "-c", "log_statement=all"]
+    # command: ["postgres", "-c", "log_statement=all"]
     shm_size: 1gb
+  query-gateway:
+    image: subsquid/query-gateway:mirovia
+    environment:
+      BOOTSTRAP: "true"
+      HTTP_LISTEN_ADDR: 0.0.0.0:8000
+      BOOT_NODES: >
+        12D3KooWSRvKpvNbsrGbLXGFZV7GYdcrYNh4W2nipwHHMYikzV58 /dns4/testnet.subsquid.io/tcp/22345,
+        12D3KooWQC9tPzj2ShLn39RFHS5SGbvbP2pEd7bJ61kSW2LwxGSB /dns4/testnet.subsquid.io/tcp/22346
+      RPC_URL: https://arbitrum-goerli.blockpi.network/v1/rpc/public
+      KEY_PATH: /query-gateway/keys/singleProc.key
+      CONFIG_PATH: /query-gateway/config/gateway-config.yml
+    volumes:
+      - ./query-gateway:/query-gateway
+    ports:
+      - "8000:8000"
