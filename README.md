@@ -99,7 +99,7 @@ A healthy response should look similar to
    ```bash
    cd my-awesome-squid
    ```
-   You can replace `my-awesome-squid` with any name you choose for your squid. If a squid with that name already exists, the first command will throw an error; if that happens simply think of another name and repeat the commands.
+   You can replace `my-awesome-squid` with any name you choose for your squid. If a squid with that name already exists in [Aquarium](https://docs.subsquid.io/deploy-squid/), the first command will throw an error; if that happens simply think of another name and repeat the commands.
 
 2. Press "Get Key" button in the quest card to obtain the `singleProc.key` key file. Save it to the `./query-gateway/keys` subfolder of the squid folder. The file will be used by the query gateway container.
 
@@ -107,6 +107,8 @@ A healthy response should look similar to
    ```bash
    sqd up
    ```
+   Wait for about a minute before proceeding to the next step.
+
 4. Prepare the squid for running by installing dependencies, building the source code and creating all the necessary database tables:
    ```bash
    npm ci
