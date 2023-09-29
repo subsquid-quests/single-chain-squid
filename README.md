@@ -10,6 +10,8 @@
 
 [Website](https://subsquid.io) | [Docs](https://docs.subsquid.io/) | [Discord](https://discord.gg/subsquid)
 
+[A very short Subsquid FAQ](https://docs.subsquid.io/faq-for-quests/)
+
 # Deploy a single processor squid
 
 This is a quest to run a squid with a single processor. Here is how to run it:
