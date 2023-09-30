@@ -18,7 +18,9 @@ export const processor = new EvmBatchProcessor()
 
         // Must be set for RPC ingestion (https://docs.subsquid.io/evm-indexing/evm-processor/)
         // OR to enable contract state queries (https://docs.subsquid.io/evm-indexing/query-state/)
-        chain: 'https://rpc.ankr.com/eth',
+
+        // Disabled for quests to avoid DDoSing Ankr :)
+        //chain: 'https://rpc.ankr.com/eth',
     })
     .setFinalityConfirmation(75)
     .setFields({
