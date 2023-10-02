@@ -59,7 +59,7 @@ Re-open the terminal to apply the changes.
 <details>
 <summary>On Linux</summary>
 
-Install NodeJS (v16 or newer), Git and Docker using your distro's package manager.
+Install [NodeJS (v16 or newer)](https://nodejs.org/en/download/package-manager), Git and Docker using your distro's package manager.
 
 We recommend configuring NodeJS to install global packages to a folder owned by an unprivileged account. Create the folder by running
 ```bash
