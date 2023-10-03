@@ -111,6 +111,21 @@ A healthy response should look similar to
    ```
    Wait for about a minute before proceeding to the next step.
 
+   If you get an error message about `unknown shorthand flag: 'd' in -d`, that means that you're using an old version of `docker` that does not support the `compose` command yet. Update Docker or edit the `commands.json` file as follows:
+   ```diff
+            "up": {
+            "deps": ["check-key"],
+            "description": "Start a PG database",
+   -        "cmd": ["docker", "compose", "up", "-d"]
+   +        "cmd": ["docker-compose", "up", "-d"]
+          },
+          "down": {
+            "description": "Drop a PG database",
+   -        "cmd": ["docker", "compose", "down"]
+   +        "cmd": ["docker-compose", "down"]
+          },
+   ```
+
 4. Prepare the squid for running by installing dependencies, building the source code and creating all the necessary database tables:
    ```bash
    npm ci
