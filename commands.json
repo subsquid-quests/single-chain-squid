@@ -17,11 +17,11 @@
       "up": {
         "deps": ["check-key"],
         "description": "Start a PG database",
-        "cmd": ["node", "-e", "const {spawnSync} = require(\"node:child_process\"); let out; out = spawnSync(\"docker-compose\",[\"up\", \"-d\"]); if (out?.error?.code===\"ENOENT\") { out = spawnSync(\"docker\", [\"compose\", \"up\", \"-d\"]) }; if (out?.output) { console.log(out.output[1].toString()); console.error(out.output[2].toString()); if (out.signal) { console.error(\"exiting due to signal\", out.signal); process.exit(1) }; process.exit(out.status) } else { console.error(\"Error running docker compose:\", out.error); process.exit(1) }"]
+        "cmd": ["docker", "compose", "up", "-d"]
       },
       "down": {
         "description": "Drop a PG database",
-        "cmd": ["node", "-e", "const {spawnSync} = require(\"node:child_process\"); let out; out = spawnSync(\"docker-compose\",[\"down\"]); if (out?.error?.code===\"ENOENT\") { out = spawnSync(\"docker\", [\"compose\", \"down\"]) }; if (out?.output) { console.log(out.output[1].toString()); console.error(out.output[2].toString()); if (out.signal) { console.error(\"exiting due to signal\", out.signal); process.exit(1) }; process.exit(out.status) } else { console.error(\"Error running docker compose:\", out.error); process.exit(1) }"]
+        "cmd": ["docker", "compose", "down"]
       },
       "migration:apply": {
         "description": "Apply the DB migrations",
