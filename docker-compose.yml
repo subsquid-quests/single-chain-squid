@@ -11,7 +11,7 @@ services:
     # command: ["postgres", "-c", "log_statement=all"]
     shm_size: 1gb
   query-gateway:
-    image: subsquid/query-gateway:0.1.4
+    image: subsquid/query-gateway:0.1.5
     environment:
       BOOTSTRAP: "true"
       HTTP_LISTEN_ADDR: 0.0.0.0:8000
@@ -22,6 +22,7 @@ services:
       RPC_URL: https://arbitrum-goerli.blockpi.network/v1/rpc/public
       KEY_PATH: /query-gateway/keys/singleProc.key
       CONFIG_PATH: /query-gateway/config/gateway-config.yml
+      RUST_LOG: info,query_gateway=debug,ethers_providers=warn
     volumes:
       - ./query-gateway:/query-gateway
     ports:
