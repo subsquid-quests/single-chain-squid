@@ -19,7 +19,7 @@ services:
         12D3KooWSRvKpvNbsrGbLXGFZV7GYdcrYNh4W2nipwHHMYikzV58 /dns4/testnet.subsquid.io/tcp/22345,
         12D3KooWQC9tPzj2ShLn39RFHS5SGbvbP2pEd7bJ61kSW2LwxGSB /dns4/testnet.subsquid.io/tcp/22346,
         12D3KooWQER7HEpwsvqSzqzaiV36d3Bn6DZrnwEunnzS76pgZkMU /dns4/testnet.subsquid.io/tcp/32345
-      RPC_URL: https://arbitrum-goerli.blockpi.network/v1/rpc/public
+      RPC_URL: https://arbitrum-goerli.public.blastapi.io
       KEY_PATH: /query-gateway/keys/singleProc.key
       CONFIG_PATH: /query-gateway/config/gateway-config.yml
       RUST_LOG: info,query_gateway=debug,ethers_providers=warn
