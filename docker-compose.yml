@@ -11,7 +11,7 @@ services:
     # command: ["postgres", "-c", "log_statement=all"]
     shm_size: 1gb
   query-gateway:
-    image: subsquid/query-gateway:0.1.5
+    image: subsquid/query-gateway:0.1.6
     environment:
       BOOTSTRAP: "true"
       HTTP_LISTEN_ADDR: 0.0.0.0:8000
